@@ -1,7 +1,7 @@
 'use client';
 
 import { IconType } from 'react-icons';
-import { FaTools, FaComments, FaUserFriends, FaStar, FaHammer, FaExpandAlt, FaTree } from 'react-icons/fa';
+import { FaHammer, FaExpandAlt, FaTree } from 'react-icons/fa';
 import Image from 'next/image';
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
@@ -124,6 +124,9 @@ const Features = ({ imageOnRight = false }: FeaturesProps) => {
           We work with trades who are the best in their field. If your desire can be accomplished, we will accomplish it. If it cannot, we are able to give advice on potential alternatives to achieve the look and finish you desire. Superconductor Studios is hungry to be known for our faultless work and we will work with you, your architect and interior designer to strive for perfection.
         </p>
       </div>
+      <p className="text-gray-600 mb-12">
+        We&apos;re not just builders; we&apos;re your partners in creating exceptional spaces. Our approach is rooted in the belief that &quot;good enough&quot; is never enough.
+      </p>
     </div>
   );
 

@@ -112,18 +112,17 @@ const accordionItems = [
   },
   {
     title: "The Handover",
-    content: "Once construction and final cleaning are complete, you’ll be welcomed into your new home for a thorough walkthrough. During this handover, we’ll highlight key features, address any details of note, and answer any questions you may have. After a final check of all aspects of the build, your new home will be officially handed over to you."
+    content: "Once construction and final cleaning are complete, you'll be welcomed into your new home for a thorough walkthrough. During this handover, we'll highlight key features, address any details of note, and answer any questions you may have. After a final check of all aspects of the build, your new home will be officially handed over to you."
   },
   {
     title: "Post Completion",
-    content: "Our commitment to your home doesn’t end at handover. We conduct follow-up inspections at both 90 days and 12 months after completion to check for any maintenance issues or settling-related concerns, ensuring your home performs as it should through all four seasons. During these visits—or anytime in between—you’re encouraged to share any questions or issues, and we’ll address them promptly. After all, satisfied clients are our greatest advocates, and we’d be honored to have you recommend us after experiencing our full journey of care and craftsmanship."
+    content: "Our commitment to your home doesn't end at handover. We conduct follow-up inspections at both 90 days and 12 months after completion to check for any maintenance issues or settling-related concerns, ensuring your home performs as it should through all four seasons. During these visits—or anytime in between—you're encouraged to share any questions or issues, and we'll address them promptly. After all, satisfied clients are our greatest advocates, and we'd be honored to have you recommend us after experiencing our full journey of care and craftsmanship."
   }
 ];
 
-const Services = () => {
+export default function Services() {
   const smallImageRef = useRef(null);
   const largeImageRef = useRef(null);
-  const heroImageRef = useRef(null);
 
   const { scrollYProgress: smallImageScroll } = useScroll({
     target: smallImageRef,
@@ -135,12 +134,8 @@ const Services = () => {
     offset: ["start end", "end start"]
   });
 
-  const { scrollYProgress: heroImageScroll } = useScroll({
-    target: heroImageRef,
-    offset: ["start end", "end start"]
-  });
-
-  const getScaleTransform = (progress: MotionValue<number>) => useTransform(progress, [0, 1], [1.2, 1]);
+  const scaleValue = [1.2, 1];
+  const smallImageScale = useTransform(smallImageScroll, [0, 1], scaleValue);
 
   return (
     <div className="bg-white">
@@ -148,14 +143,14 @@ const Services = () => {
       <div className="relative min-h-fit lg:min-h-screen flex flex-col">
         <div className="flex flex-col lg:flex-row min-h-fit lg:min-h-screen">
           {/* Left Side - Image */}
-          <div ref={heroImageRef} className="relative w-full lg:w-1/2 h-[50vh] lg:h-auto overflow-hidden">
+          <div ref={smallImageRef} className="relative w-full lg:w-1/2 h-[50vh] lg:h-auto overflow-hidden">
             <motion.div
               className="relative w-full h-full"
-              style={{ scale: getScaleTransform(heroImageScroll) }}
+              style={{ scale: smallImageScale }}
             >
               <Image
-                src="/services.png"
-                alt="Modern home exterior"
+                src="/services.jpg"
+                alt="Our Services"
                 fill
                 className="object-cover"
                 priority
@@ -215,6 +210,4 @@ const Services = () => {
       <VideoShowcase />
     </div>
   );
-};
-
-export default Services; 
+}
