@@ -3,19 +3,20 @@
 import { FaArrowDown, FaPhone, FaEnvelope } from 'react-icons/fa';
 import Image from 'next/image';
 import { useRef, useState } from 'react';
-import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const heroImageRef = useRef(null);
 
-  const { scrollYProgress: heroImageScroll } = useScroll({
+  const { scrollYProgress } = useScroll({
     target: heroImageRef,
     offset: ["start end", "end start"]
   });
 
-  const getScaleTransform = (progress: MotionValue<number>) => useTransform(progress, [0, 1], [1.2, 1]);
+  // Move transform logic inside component
+  const scale = useTransform(scrollYProgress, [0, 1], [1.2, 1]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -39,7 +40,7 @@ export default function ContactPage() {
           <div ref={heroImageRef} className="relative w-full lg:w-1/2 h-[50vh] lg:h-auto overflow-hidden">
             <motion.div
               className="relative w-full h-full"
-              style={{ scale: getScaleTransform(heroImageScroll) }}
+              style={{ scale }}
             >
               <Image
                 src="/contact-hero.jpg"

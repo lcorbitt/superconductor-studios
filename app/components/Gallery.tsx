@@ -33,12 +33,6 @@ export default function Gallery() {
     setSelectedImage((selectedImage - 1 + galleryImages.length) % galleryImages.length);
   };
 
-  const handleKeyDown = (e: KeyboardEvent) => {
-    if (e.key === 'Escape') setSelectedImage(null);
-    if (e.key === 'ArrowRight') nextImage();
-    if (e.key === 'ArrowLeft') previousImage();
-  };
-
   return (
     <div className="min-h-screen bg-white">
       {/* Gallery Grid */}

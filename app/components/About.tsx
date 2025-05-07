@@ -3,9 +3,16 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { useRef, useState } from 'react';
-import { useScroll, useTransform, MotionValue } from 'framer-motion';
+import { useScroll, useTransform } from 'framer-motion';
 import { FaArrowDown, FaPlay } from 'react-icons/fa';
 import { IoMdClose } from 'react-icons/io';
+
+interface Testimonial {
+  id: number;
+  quote: string;
+  author: string;
+  location: string;
+}
 
 const historyTimeline = [
   {
@@ -30,7 +37,7 @@ const historyTimeline = [
   }
 ];
 
-const testimonials = [
+const testimonials: Testimonial[] = [
   {
     id: 1,
     quote: "Working with Superconductor Studios was an absolute pleasure. Their attention to detail and commitment to quality exceeded our expectations.",
@@ -45,7 +52,7 @@ const testimonials = [
   },
   {
     id: 3,
-    quote: "The team's expertise and professionalism made the entire building process smooth and enjoyable. We couldn't be happier with our new home.",
+    quote: "The team&apos;s expertise and professionalism made the entire building process smooth and enjoyable. We couldn&apos;t be happier with our new home.",
     author: "Emily & David Chen",
     location: "Buchanans Road"
   },
@@ -57,7 +64,7 @@ const testimonials = [
   }
 ];
 
-const TestimonialCard = ({ testimonial }: { testimonial: any }) => {
+const TestimonialCard = ({ testimonial }: { testimonial: Testimonial }) => {
   return (
     <motion.div
       className="group relative bg-gray-50 p-8 h-full flex flex-col justify-between"
@@ -66,7 +73,7 @@ const TestimonialCard = ({ testimonial }: { testimonial: any }) => {
       transition={{ duration: 0.5 }}
     >
       <div>
-        <p className="text-xl sm:text-2xl text-gray-600 mb-8 font-light italic">"{testimonial.quote}"</p>
+        <p className="text-xl sm:text-2xl text-gray-600 mb-8 font-light italic">&quot;{testimonial.quote}&quot;</p>
       </div>
       <div>
         <p className="text-lg sm:text-xl text-black font-medium">{testimonial.author}</p>
@@ -176,7 +183,10 @@ const About = () => {
     offset: ["start end", "end start"]
   });
 
-  const getScaleTransform = (progress: MotionValue<number>) => useTransform(progress, [0, 1], [1.2, 1]);
+  const scaleValue = [1.2, 1];
+  const smallImageScale = useTransform(smallImageScroll, [0, 1], scaleValue);
+  const largeImageScale = useTransform(largeImageScroll, [0, 1], scaleValue);
+  const heroImageScale = useTransform(heroImageScroll, [0, 1], scaleValue);
 
   return (
     <div className="bg-white">
@@ -187,7 +197,7 @@ const About = () => {
           <div ref={heroImageRef} className="relative w-full lg:w-1/2 h-[50vh] lg:h-auto overflow-hidden">
             <motion.div
               className="relative w-full h-full"
-              style={{ scale: getScaleTransform(heroImageScroll) }}
+              style={{ scale: heroImageScale }}
             >
               <Image
                 src="/dedication.jpg"
@@ -237,17 +247,17 @@ const About = () => {
               </h2>
               <div className="text-base text-gray-600 max-w-none">
                 <p className="mb-6">
-                  We're a family-run team dedicated to designing and building high-quality custom homes. Every project is a reflection of our commitment, care, and craftsmanship, and that personal investment shows in our results.
+                  We&apos;re a family-run team dedicated to designing and building high-quality custom homes. Every project is a reflection of our commitment, care, and craftsmanship, and that personal investment shows in our results.
                 </p>
                 <p>
-                  At Superconductor Studios, you work directly with the people who own the business and build the homes. We take pride in being hands-on, transparent, and accountable from start to finish. With years of experience behind us, we're here to create beautiful, functional spaces tailored to each family's unique vision.
+                  At Superconductor Studios, you work directly with the people who own the business and build the homes. We take pride in being hands-on, transparent, and accountable from start to finish. With years of experience behind us, we&apos;re here to create beautiful, functional spaces tailored to each family&apos;s unique vision.
                 </p>
               </div>
 
               {/* Small Image Below Text */}
               <div ref={smallImageRef} className="relative h-[400px] mt-24 lg:mt-52 overflow-hidden">
                 <motion.div
-                  style={{ scale: getScaleTransform(smallImageScroll) }}
+                  style={{ scale: smallImageScale }}
                   className="relative w-full h-full"
                 >
                   <Image
@@ -263,7 +273,7 @@ const About = () => {
             {/* Right Column - Large Image */}
             <div ref={largeImageRef} className="relative h-[300px] lg:h-[600px] bg-gray-100 overflow-hidden">
               <motion.div
-                style={{ scale: getScaleTransform(largeImageScroll) }}
+                style={{ scale: largeImageScale }}
                 className="relative w-full h-full"
               >
                 <Image

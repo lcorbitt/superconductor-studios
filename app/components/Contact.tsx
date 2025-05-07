@@ -41,7 +41,7 @@ const Contact = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-lg text-gray-300"
             >
-              Let's create something extraordinary together. Whether you're ready to start your dream home project or just exploring possibilities, we're here to help bring your vision to life.
+              Let&apos;s create something extraordinary together. Whether you&apos;re ready to start your dream home project or just exploring possibilities, we&apos;re here to help bring your vision to life.
             </motion.p>
           </div>
 

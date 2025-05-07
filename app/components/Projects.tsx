@@ -3,19 +3,19 @@
 import { FaArrowDown } from 'react-icons/fa';
 import Image from 'next/image';
 import { useRef } from 'react';
-import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import Contact from './Contact';
 import ProjectsShowcase from './ProjectsShowcase';
 
 export default function Projects() {
   const heroImageRef = useRef(null);
 
-  const { scrollYProgress: heroImageScroll } = useScroll({
+  const { scrollYProgress } = useScroll({
     target: heroImageRef,
     offset: ["start end", "end start"]
   });
 
-  const getScaleTransform = (progress: MotionValue<number>) => useTransform(progress, [0, 1], [1.2, 1]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1.2, 1]);
 
   return (
     <div className="min-h-screen bg-white">
@@ -26,7 +26,7 @@ export default function Projects() {
           <div ref={heroImageRef} className="relative w-full lg:w-1/2 h-[50vh] lg:h-auto overflow-hidden">
             <motion.div
               className="relative w-full h-full"
-              style={{ scale: getScaleTransform(heroImageScroll) }}
+              style={{ scale }}
             >
               <Image
                 src="/projects.jpg"

@@ -3,7 +3,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { useRef, useState } from 'react';
-import { useScroll, useTransform, MotionValue } from 'framer-motion';
+import { useScroll, useTransform } from 'framer-motion';
 import { FaArrowDown, FaPlay } from 'react-icons/fa';
 import { IoMdClose } from 'react-icons/io';
 import Accordion from './Accordion';
@@ -129,7 +129,7 @@ export default function Services() {
     offset: ["start end", "end start"]
   });
 
-  const { scrollYProgress: largeImageScroll } = useScroll({
+  useScroll({
     target: largeImageRef,
     offset: ["start end", "end start"]
   });

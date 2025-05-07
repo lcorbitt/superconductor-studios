@@ -118,7 +118,7 @@ const Features = ({ imageOnRight = false }: FeaturesProps) => {
       </div>
       <div className="text-gray-600 space-y-4 text-base font-light">
         <p>
-          Superconductor Studios' passion is for building amazing custom architect-designed homes. From the foundations, frame, exterior details through to luxury finishes on your floors, cabinetry and electrical, our fastidious attention to detail and "we can achieve that" attitude, we guarantee that building or renovating a home with us will be memorable for all the right reasons.
+          Superconductor Studios&apos; passion is for building amazing custom architect-designed homes. From the foundations, frame, exterior details through to luxury finishes on your floors, cabinetry and electrical, our fastidious attention to detail and &quot;we can achieve that&quot; attitude, we guarantee that building or renovating a home with us will be memorable for all the right reasons.
         </p>
         <p>
           We work with trades who are the best in their field. If your desire can be accomplished, we will accomplish it. If it cannot, we are able to give advice on potential alternatives to achieve the look and finish you desire. Superconductor Studios is hungry to be known for our faultless work and we will work with you, your architect and interior designer to strive for perfection.

@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { FaArrowRight } from 'react-icons/fa';
 import { useRef } from 'react';
 
@@ -20,7 +20,9 @@ const Dedication = () => {
     offset: ["start end", "end start"]
   });
 
-  const getScaleTransform = (progress: MotionValue<number>) => useTransform(progress, [0, 1], [1.2, 1]);
+  const scaleValue = [1.2, 1];
+  const smallImageScale = useTransform(smallImageScroll, [0, 1], scaleValue);
+  const largeImageScale = useTransform(largeImageScroll, [0, 1], scaleValue);
 
   return (
     <section className="py-24 bg-white">
@@ -62,7 +64,7 @@ const Dedication = () => {
             {/* Small Image Below Text */}
             <div ref={smallImageRef} className="relative h-[300px] mt-12 overflow-hidden">
               <motion.div
-                style={{ scale: getScaleTransform(smallImageScroll) }}
+                style={{ scale: smallImageScale }}
                 className="relative w-full h-full"
               >
                 <Image
@@ -78,7 +80,7 @@ const Dedication = () => {
           {/* Right Column - Image */}
           <div ref={largeImageRef} className="relative h-[300px] lg:h-[600px] bg-gray-100 overflow-hidden">
             <motion.div
-              style={{ scale: getScaleTransform(largeImageScroll) }}
+              style={{ scale: largeImageScale }}
               className="relative w-full h-full"
             >
               <Image

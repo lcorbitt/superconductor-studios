@@ -4,7 +4,15 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useRef } from 'react';
 
-const ProjectCard = ({ project, index, isActive }: { project: any; index: number; isActive: boolean }) => {
+interface Project {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  link?: string;
+}
+
+const ProjectCard = ({ project, index, isActive }: { project: Project; index: number; isActive: boolean }) => {
   const ref = useRef(null);
 
   return (
